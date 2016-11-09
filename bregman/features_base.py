@@ -347,6 +347,7 @@ class Features(object):
         lo_edge = float( self.lo )
         f_ratio = 2.0**( 1.0 / bpo ) # Constant-Q bandwidth
         self._cqtN = float( P.floor(P.log(hi_edge/lo_edge)/P.log(f_ratio)) )
+        self._cqtN = int(self._cqtN) # to avoid scary numpy warning (5.0 != 5 to new numpy)
         self._dctN = self._cqtN
         self._outN = float(self.nfft/2+1)
         if self._cqtN<1: print "warning: cqtN not positive definite"
